@@ -11,7 +11,10 @@ def downloadVHSData():
 	while index>25 or index<1:
 		print('Try again')
 		index=int(input('Choose index of province from 1 to 25:\n>>>'))
-	url_end=str(index)+".txt"
+	if index<10:
+		url_end="0"+str(index)+".txt"
+	else:
+		url_end=str(index)+".txt"
 	url=url_start+url_end
 	vhi_url = urllib.request.urlopen(url)
 	date_time=str(datetime.now())
@@ -160,12 +163,12 @@ def reindexProvinces():
 	reindexation['second'][25]='Autonomous_Republic_of_Crimea'	
 #------------------------------------------------------------------------------------------------------------------------------------------------------
 	print(reindexation)
-
+            
 
 #reindexProvinces()
 #downloadVHSData()
-show("vhi_id_16.csv")
-#maxDuringYear("vhi_id_16.csv")
-#minDuringYear("vhi_id_16.csv")
-#extremeDroughtHigherThan("vhi_id_16.csv")
-#averageDroughtHigherThan("vhi_id_16.csv")
+#show("vhi_id_16__2016_03_06_16_25_54.448514.csv")
+#maxDuringYear("vhi_id_16__2016_03_06_16_25_54.448514.csv")
+#minDuringYear("vhi_id_16__2016_03_06_16_25_54.448514.csv")
+#extremeDroughtHigherThan("vhi_id_16__2016_03_06_16_25_54.448514.csv")
+#averageDroughtHigherThan("vhi_id_16__2016_03_06_16_25_54.448514.csv")
