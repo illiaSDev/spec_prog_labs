@@ -8,7 +8,6 @@ import numpy as np
 
 class VHIplot(server.App):
     title = "VHI info"
-
     inputs = [{     "input_type":'dropdown',
                     "label": 'column', 
                     "options" : [ {"label": "VCI", "value":"VCI"},
@@ -70,9 +69,7 @@ class VHIplot(server.App):
     controls = [{   "control_type" : "button",  
                     "label" : "Get info",
                     "control_id" : "update_data"}]
-
-    tabs = ["Plot", "Table"]  # add tabs
-
+    tabs = ["Plot", "Table"]  
     outputs = [{    "output_type" : "plot",
                     "output_id" : "plot",
                     "control_id" : "update_data",
@@ -89,11 +86,12 @@ class VHIplot(server.App):
         x=df[(df['year']>=int(params['since']))]
         x=x[(x['year']<=int(params['till']))]
         x=x[(x['week']>=int(params['week_since']))]
-        x=x[(x['week']<=int(params['week_till']))]
-        z=x[params['column']]
-        y=x.index
-        y=y-y[0]
-        plt.plot(y,z)
+        x=x[(x['week']<=int(params['week_till'])+1)]
+        y_axis=x[params['column']]
+        x_axis=x.index
+        if params['since']==params['till']:
+        	x_axis=x_axis-x.index[0]
+        plt.plot(x_axis, y_axis)
         return plt.gcf()
 
     def getData(self, params):
